@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="remix.EmployeeMapper">
+    <resultMap id="employeeResultMap" type="remix.common.EmployeeDTO">
+        <id property="id" column="EMP_ID"/>
+        <result property="name" column="EMP_NAME"/>
+        <result property="no" column="EMP_NO"/>
+        <result property="email" column="EMAIL"/>
+        <result property="phone" column="PHONE"/>
+        <result property="departmentCode" column="DEPT_CODE"/>
+        <result property="jobCode" column="JOB_CODE"/>
+        <result property="salaryLevel" column="SAL_LEVEL"/>
+        <result property="salary" column="SALARY"/>
+        <result property="bonus" column="BONUS"/>
+        <result property="managerID" column="MANAGER_ID"/>
+        <result property="hireDate" column="HIRE_DATE"/>
+        <result property="entDate" column="ENT_DATE"/>
+        <result property="entYn" column="ENT_YN"/>
+    </resultMap>
+
+    <select id="selectAllEmployee" resultMap="employeeResultMap">
+        SELECT
+               EMP_ID,
+               EMP_NAME,
+               EMP_NO,
+               EMAIL,
+               PHONE,
+               DEPT_CODE,
+               JOB_CODE,
+               SAL_LEVEL,
+               SALARY,
+               BONUS,
+               MANAGER_ID,
+               HIRE_DATE,
+               ENT_DATE,
+               ENT_YN
+          FROM EMPLOYEE
+         WHERE ENT_YN = 'N'
+        ORDER BY EMP_ID
+    </select>
+
+    <select id="selectEmployeeById" parameterType="_int" resultMap="employeeResultMap">
+        SELECT
+               EMP_ID,
+               EMP_NAME,
+               EMP_NO,
+               EMAIL,
+               PHONE,
+               DEPT_CODE,
+               JOB_CODE,
+               SAL_LEVEL,
+               SALARY,
+               BONUS,
+               MANAGER_ID,
+               HIRE_DATE,
+               ENT_DATE,
+               ENT_YN
+          FROM EMPLOYEE
+         WHERE ENT_YN = 'N'
+           AND EMP_ID = #{ id }
+    </select>
+
+    <insert id="insertEmployee" parameterType="remix.common.EmployeeDTO">
+        INSERT
+          INTO EMPLOYEE
+               (
+                EMP_NAME,
+                EMP_NO,
+                EMAIL,
+                PHONE,
+                DEPT_CODE,
+                JOB_CODE,
+                SAL_LEVEL,
+                SALARY,
+                BONUS,
+                MANAGER_ID,
+                HIRE_DATE
+               )
+         VALUES (
+                  #{name},
+                  #{no},
+                  #{email},
+                  #{phone},
+                  #{departmentCode},
+                  #{jobCode},
+                  #{salaryLevel},
+                  #{salary},
+                  #{bonus},
+                  #{managerID},
+                  #{hireDate}
+                )
+    </insert>
+
+    <update id="modifyEmployee" parameterType="remix.common.EmployeeDTO">
+        UPDATE EMPLOYEE
+           SET EMP_NAME = #{name},
+               EMP_NO = #{no},
+               EMAIL = #{email},
+               PHONE = #{phone},
+               DEPT_CODE = #{departmentCode},
+               JOB_CODE = #{jobCode},
+               SAL_LEVEL = #{salaryLevel},
+               SALARY = #{salary},
+               BONUS = #{bonus},
+               MANAGER_ID = #{managerID},
+               HIRE_DATE = #{hireDate},
+               ENT_DATE = #{entDate}
+         WHERE EMP_ID = #{id}
+    </update>
+
+    <delete id ="deleteEmployee" parameterType="remix.common.EmployeeDTO">
+        DELETE
+          FROM EMPLOYEE
+         WHERE EMP_ID = #{id}
+    </delete>
+
+</mapper>
