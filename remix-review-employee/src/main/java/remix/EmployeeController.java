@@ -5,6 +5,7 @@ import remix.common.PrintResult;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class EmployeeController {
 
@@ -89,13 +90,56 @@ public class EmployeeController {
         String departmentCode = parameter.get("departmentCode");
         String jobCode = parameter.get("jobCode");
         String salaryLevel = parameter.get("salaryLevel");
-        int salary = Integer.parseInt(parameter.get("salary"));
-        double bonus = Double.parseDouble(parameter.get("bonus"));
+//        String salaryString = parameter.get("salary");
+//        Integer salary = (salaryString != null) ? Integer.parseInt(salaryString) : null;
+//        String bonusString = parameter.get("bonus");
+//        Double bonus = (bonusString != null) ? Double.parseDouble(bonusString) : null;
+        String salaryString = parameter.get("salary");
+        Integer salary = null;
+        if (salaryString != null && !salaryString.isEmpty()) {
+            try {
+                salary = Integer.parseInt(salaryString);
+            } catch (NumberFormatException e) {
+                // 예외 처리
+                e.printStackTrace(); // 예외 처리 방법을 결정해야 함
+            }
+        }
+        String bonusString = parameter.get("bonus");
+        Double bonus = null;
+        if (bonusString != null && !bonusString.isEmpty()) {
+            try {
+                bonus = Double.parseDouble(bonusString);
+            } catch (NumberFormatException e) {
+                // 예외 처리
+                e.printStackTrace(); // 예외 처리 방법을 결정해야 함
+            }
+        }
+
         String managerID = parameter.get("managerID");
+//        String hireDate = parameter.get("hireDate");
+//        java.sql.Date changeHireDate = java.sql.Date.valueOf(hireDate);
         String hireDate = parameter.get("hireDate");
-        java.sql.Date changeHireDate = java.sql.Date.valueOf(hireDate);
+        java.sql.Date changeHireDate = null;
+        if (hireDate != null && !hireDate.isEmpty()) {
+            try {
+                changeHireDate = java.sql.Date.valueOf(hireDate);
+            } catch (IllegalArgumentException e) {
+                // 예외 처리
+                e.printStackTrace(); // 예외 처리 방법을 결정해야 함
+            }
+        }
+//        String entDate = parameter.get("entDate");
+//        java.sql.Date changeEntDate = java.sql.Date.valueOf(entDate);
         String entDate = parameter.get("entDate");
-        java.sql.Date changeEntDate = java.sql.Date.valueOf(entDate);
+        java.sql.Date changeEntDate = null;
+        if (entDate != null && !entDate.isEmpty()) {
+            try {
+                changeEntDate = java.sql.Date.valueOf(entDate);
+            } catch (IllegalArgumentException e) {
+                // 예외 처리
+                e.printStackTrace(); // 예외 처리 방법을 결정해야 함
+            }
+        }
 
         EmployeeDTO employee = new EmployeeDTO();
         employee.setId(id);

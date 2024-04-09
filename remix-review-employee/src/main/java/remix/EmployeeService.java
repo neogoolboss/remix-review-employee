@@ -4,10 +4,14 @@ import org.apache.ibatis.session.SqlSession;
 import remix.common.EmployeeDTO;
 
 import java.util.List;
+import java.util.Map;
 
 import static remix.common.Template.getSqlSesstion;
 
 public class EmployeeService {
+
+    private EmployeeMapper mapper;
+
     public List<EmployeeDTO> selectAllEmployee() {
 
         SqlSession sqlSession = getSqlSesstion();
@@ -92,4 +96,24 @@ public class EmployeeService {
 
         return result > 0 ? true : false;
     }
+
+//    public void modifyEmployee(Map<String, String> parameter) {
+//
+//        SqlSession sqlSession = getSqlSesstion();
+//
+//        mapper = sqlSession.getMapper(EmployeeMapper.class);
+//
+//        int result = mapper.modifyEmployee(parameter);
+//
+//        if(result > 0) {
+//            System.out.println("직원 정보 변경에 성공함");
+//            sqlSession.commit();
+//        } else {
+//            System.out.println("직원 정보 변경에 실패함 ㅠㅠ");
+//            sqlSession.rollback();
+//        }
+//
+//        sqlSession.close();
+//
+//    }
 }

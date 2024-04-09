@@ -1,5 +1,6 @@
 package remix;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class Application {
         Scanner sc = new Scanner(System.in);
 
         EmployeeController employeeController = new EmployeeController();
+        EmployeeService employeeService = new EmployeeService();
 
         do {
             System.out.println("========== 메뉴 관리 ==========");
@@ -98,7 +100,6 @@ public class Application {
         parameter.put("bonus", bonus);
         parameter.put("managerID", managerID);
         parameter.put("hireDate", hireDate);
-
 
         return parameter;
     }

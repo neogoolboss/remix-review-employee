@@ -96,18 +96,44 @@
 
     <update id="modifyEmployee" parameterType="remix.common.EmployeeDTO">
         UPDATE EMPLOYEE
-           SET EMP_NAME = #{name},
-               EMP_NO = #{no},
-               EMAIL = #{email},
-               PHONE = #{phone},
-               DEPT_CODE = #{departmentCode},
-               JOB_CODE = #{jobCode},
-               SAL_LEVEL = #{salaryLevel},
-               SALARY = #{salary},
-               BONUS = #{bonus},
-               MANAGER_ID = #{managerID},
-               HIRE_DATE = #{hireDate},
-               ENT_DATE = #{entDate}
+        <trim prefix="SET" prefixOverrides=",">
+           <if test="name != null and name != ''">
+               EMP_NAME = #{name}
+           </if>
+            <if test="no != null and no != ''">
+               , EMP_NO = #{no}
+            </if>
+            <if test="email != null and email != ''">
+               , EMAIL = #{email}
+            </if>
+            <if test="phone">
+               , PHONE = #{phone}
+            </if>
+            <if test="departmentCode != null and departmentCode != ''">
+               , DEPT_CODE = #{departmentCode}
+            </if>
+            <if test="jobCode != null and departmentCode != ''">
+                , JOB_CODE = #{jobCode}
+            </if>
+            <if test="salaryLevel != null and salaryLevel != ''">
+                , SAL_LEVEL = #{salaryLevel}
+            </if>
+            <if test="salary != null and salary != ''">
+                , SALARY = #{salary}
+            </if>
+            <if test="bonus != null and bonus != ''">
+                , BONUS = #{bonus}
+            </if>
+            <if test="managerID != null and managerID != ''">
+                , MANAGER_ID = #{managerID}
+            </if>
+            <if test="hireDate != null and hireDate != ''">
+                , HIRE_DATE = #{hireDate}
+            </if>
+            <if test="entDate != null and entDate != ''">
+                , ENT_DATE = #{entDate}
+            </if>
+        </trim>
          WHERE EMP_ID = #{id}
     </update>
 

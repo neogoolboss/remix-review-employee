@@ -10,8 +10,8 @@ public class EmployeeDTO {
     String departmentCode;
     String jobCode;
     String salaryLevel;
-    int salary;
-    double bonus;
+    Integer salary;
+    Double bonus;
     String managerID;
     java.util.Date hireDate;
     java.util.Date entDate;
@@ -20,7 +20,7 @@ public class EmployeeDTO {
     public EmployeeDTO() {
     }
 
-    public EmployeeDTO(String id, String name, String no, String email, String phone, String departmentCode, String jobCode, String salaryLevel, int salary, double bonus, String managerID, java.util.Date hireDate, java.util.Date entDate, String entYn) {
+    public EmployeeDTO(String id, String name, String no, String email, String phone, String departmentCode, String jobCode, String salaryLevel, Integer salary, Double bonus, String managerID, java.util.Date hireDate, java.util.Date entDate, String entYn) {
         this.id = id;
         this.name = name;
         this.no = no;
@@ -101,19 +101,19 @@ public class EmployeeDTO {
         this.salaryLevel = salaryLevel;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 
-    public double getBonus() {
+    public Double getBonus() {
         return bonus;
     }
 
-    public void setBonus(double bonus) {
+    public void setBonus(Double bonus) {
         this.bonus = bonus;
     }
 
